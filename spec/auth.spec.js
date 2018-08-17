@@ -1,4 +1,5 @@
 const request = require('supertest');
+const jwt = require('jsonwebtoken');
 const { expect } = require('chai');
 const { server, database } = require('../index');
 
@@ -51,5 +52,26 @@ describe('authentication', () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.user.email).to.equal('user@site.com');
+  });
+
+  it('logs user in if token expired', async () => {
+    const payload = {
+      name: 'user',
+      email: 'user@site.com',
+    };
+
+    await database.insert(payload).into('users');
+
+    const token = jwt.sign(payload, process.env.APP_SECRET, {
+      expiresIn: '0 seconds',
+    });
+
+    const response = await request(server)
+      .post('/login')
+      .send(payload)
+      .set('token', token);
+
+    expect(response.status).to.equal(202);
+    expect(response.headers.token).not.to.equal(token);
   });
 });

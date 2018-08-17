@@ -42,11 +42,9 @@ module.exports = database => ({
       }).returning('*').into('users');
 
       const token = jwt.sign({
-        name: String(req.body.name),
-        email: String(req.body.email),
-        uuid: user[0].uuid,
+        email: user[0].email,
       }, process.env.APP_SECRET, {
-        expiresIn: '1 day',
+        expiresIn: '30 days',
       });
 
       res

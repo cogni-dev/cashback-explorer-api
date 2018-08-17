@@ -7,9 +7,11 @@ const bodyParser = require('body-parser');
 const util = require('util');
 
 const database = require('knex')(require('./knexfile')[process.env.NODE_ENV]);
+
 const checkUser = require('./lib/checkUser')(database);
 const UsersController = require('./controllers/UsersController')(database);
 const VenuesController = require('./controllers/VenuesController')(database);
+const AuthController = require('./controllers/AuthController')(database);
 
 const app = express();
 
@@ -23,6 +25,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.post('/users', UsersController.create);
+app.post('/login', AuthController.login);
+
 app.get('/profile', checkUser, UsersController.show);
 app.get('/venues', checkUser, VenuesController.index);
 app.post('/venues', checkUser, VenuesController.create);
