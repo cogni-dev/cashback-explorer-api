@@ -23,7 +23,7 @@ Should have controls:
 2. User email input
 3. "Sign in" button
 
-If user's name or email are incorrect, a login procedure should fail. A successful login form submission indicated by "token" header in the server response. Once **token** obtained, it should be preserved on the client and sent with every request to the Cashback Explorer API.
+If user's name or email are incorrect, a login procedure should fail. A successful login form submission indicated by "token" header in the server response. Once **token obtained, it should be preserved on the client and sent with every request** to the Cashback Explorer API.
 
 Once subsripbtion succeed, user should navigate to **["Explore" screen](#explore-screen)**.
 

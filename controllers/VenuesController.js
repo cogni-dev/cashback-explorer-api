@@ -90,8 +90,8 @@ module.exports = database => ({
       const venue = await database.insert({
         city: String(req.body.city.toLowerCase()),
         name: String(req.body.name),
-        lat: Number(req.body.long),
-        long: Number(req.body.lat),
+        lat: Number(req.body.lat),
+        long: Number(req.body.long),
         cashback: Number(req.body.cashback),
         user_id: Number(user.id),
       }).into('venues').returning('*');
