@@ -4,7 +4,7 @@ In this test assessment, we would like you to build Cashback Explorer applicatio
 
 This test has two levels of difficulty:
 
-1. Application developer (Swift / React Native)
+1. Application developer (Swift)
 2. Fullstack developer (Swift + Javascript developer)
 
 First, complete "Application developer" level, and later, if you like, complete "Fullstack developer" level.
